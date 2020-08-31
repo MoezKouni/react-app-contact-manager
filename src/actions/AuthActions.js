@@ -1,14 +1,10 @@
 import axios from 'axios'
 import setTokenHeader from '../utils/setTokenHeader'
 import { USER_LOADED, AUTH_ERROR, REGISTER_SUCCESS, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT } from './types'
-import { apiUrl } from '../config'
-
-const apiURL = apiUrl
-
 
 // Register User
 export const register = data => dispatch => {
-    axios.post(`${apiURL}/register`, data)
+    axios.post('/register', data)
         .then(res => {
             dispatch({
                 type: REGISTER_SUCCESS,
@@ -23,7 +19,7 @@ export const loadUser = () => dispatch => {
     if(localStorage.token){
         setTokenHeader(localStorage.token)
     }
-    axios.get(`${apiURL}/login`)
+    axios.get('/login')
         .then(res => dispatch({
             type: USER_LOADED,
             payload: res.data
@@ -35,7 +31,7 @@ export const loadUser = () => dispatch => {
 
 // Login User
 export const login = data => dispatch => {
-    axios.post(`${apiURL}/login`, data)
+    axios.post('/login', data)
         .then(res => {
             dispatch({
                 type: LOGIN_SUCCESS,
