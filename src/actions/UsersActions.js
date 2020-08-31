@@ -1,12 +1,9 @@
 import { GET_USERS, DELETE_USER, UPDATE_USER, ADD_USER, ERROR_LOADING_USERS, GET_ALL_USERS } from './types'
 import axios from 'axios'
-import { apiUrl } from '../config'
-
-const apiURL = apiUrl
 
 // get all people of the connected user
 export const getUsers = () => dispatch => {
-    axios.get(`${apiURL}/person`)
+    axios.get('/person')
         .then(res => {
             dispatch({
                 type: GET_USERS,
@@ -22,7 +19,7 @@ export const getUsers = () => dispatch => {
 }
 // get public people
 export const getPublicUsers = () => dispatch => {
-    axios.get(`${apiURL}/person/public`)
+    axios.get('/person/public')
         .then(res => {
             dispatch({
                 type: GET_ALL_USERS,
@@ -39,7 +36,7 @@ export const getPublicUsers = () => dispatch => {
 
 
 export const editUser = user => dispatch => {
-    axios.put(`${apiURL}/person/${user._id}`, user)
+    axios.put(`/person/${user._id}`, user)
         .then(() => {
             dispatch({
                 type: UPDATE_USER,
@@ -58,7 +55,7 @@ export const editUser = user => dispatch => {
 
 // Add User
 export const addUser = user => dispatch => {
-    axios.post(`${apiURL}/person`, user)
+    axios.post('/person', user)
         .then(res => {
             dispatch({
                 type: ADD_USER,
@@ -74,7 +71,7 @@ export const addUser = user => dispatch => {
 }
 // Delete User
 export const deleteUser = id => dispatch => {
-    axios.delete(`${apiURL}/person/${id}`)
+    axios.delete(`/person/${id}`)
         .then(() => {
             dispatch({
                 type: DELETE_USER,
